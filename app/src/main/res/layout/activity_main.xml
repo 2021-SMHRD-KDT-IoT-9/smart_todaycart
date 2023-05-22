@@ -8,8 +8,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc1"
-        android:layout_width="341dp"
-        android:layout_height="120dp"
+        android:layout_width="375dp"
+        android:layout_height="135dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.502"
@@ -35,8 +35,8 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="376dp"
-        android:layout_height="248dp"
+        android:layout_width="375dp"
+        android:layout_height="200dp"
         android:backgroundTint="#FF9800"
         android:gravity="center|left"
 
@@ -55,29 +55,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="468dp" />
+        app:layout_constraintGuide_begin="438dp" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="217dp"
+        android:layout_width="114dp"
+        android:layout_height="149dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.792"
         app:layout_constraintStart_toStartOf="@+id/btnLogin"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.68"
+        app:layout_constraintVertical_bias="0.565"
         app:srcCompat="@drawable/login" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/btnJoin"
+        android:layout_width="375dp"
+        android:layout_height="200dp"
+        android:backgroundTint="#00BCD4"
+        android:gravity="center|left"
         android:text="회원가입"
+        android:textSize="40dp"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="109dp"
+        android:layout_height="167dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.352"
+        app:srcCompat="@drawable/add_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
