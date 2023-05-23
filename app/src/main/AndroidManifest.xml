@@ -17,7 +17,6 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".Main_AfterActivity"
             android:exported="false"/>
