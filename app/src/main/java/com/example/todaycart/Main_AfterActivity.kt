@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import kotlin.math.log
 
 class Main_AfterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,7 @@ class Main_AfterActivity : AppCompatActivity() {
         val btnSearch : Button = findViewById(R.id.btnSearch)
         val btnMap : Button = findViewById(R.id.btnMap)
         val btnCall : Button = findViewById(R.id.btnCall)
-
+        Toast.makeText(this,"test",Toast.LENGTH_SHORT).show()
         var id = intent.getStringExtra("id")
         var pw = intent.getStringExtra("pw")
         if (id.equals("손동연")&&pw.equals("1234")){
@@ -24,7 +25,9 @@ class Main_AfterActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this,"ID/PW를 확인해주세요",Toast.LENGTH_SHORT).show()
         }
+        btnBucket.setOnClickListener {
 
+        }
 
     }
 }

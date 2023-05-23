@@ -20,6 +20,9 @@ class ShoppingActivity : AppCompatActivity() {
 
         var products : MutableList<ProductVO> = mutableListOf()
         products.add(ProductVO(R.drawable.snack,"오!감자(오리지널)","2000원"))
+        btnAd.setOnClickListener {
+
+        }
         val adapter = ProductAdapter(applicationContext,R.layout.shopping_list,products)
         rcv1.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
         rcv1.adapter=adapter
