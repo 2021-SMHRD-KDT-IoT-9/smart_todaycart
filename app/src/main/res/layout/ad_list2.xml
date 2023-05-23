@@ -6,29 +6,29 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/cida"
-        android:layout_width="212dp"
-        android:layout_height="234dp"
+        android:id="@+id/ad"
+        android:layout_width="168dp"
+        android:layout_height="174dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cida" />
 
     <TextView
         android:id="@+id/pnName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cida" />
+        app:layout_constraintEnd_toEndOf="@+id/ad"
+        app:layout_constraintStart_toStartOf="@+id/ad"
+        app:layout_constraintTop_toBottomOf="@+id/ad" />
 
     <TextView
         android:id="@+id/pnCost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/pnName"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="@+id/pnName"
         app:layout_constraintTop_toBottomOf="@+id/pnName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
