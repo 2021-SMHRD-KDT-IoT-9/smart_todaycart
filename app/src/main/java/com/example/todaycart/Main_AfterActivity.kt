@@ -18,7 +18,7 @@ class Main_AfterActivity : AppCompatActivity() {
 
         var id = intent.getStringExtra("id")
         var pw = intent.getStringExtra("pw")
-        if (id.equals("손동연")&&pw.equals("1234")){
+        if (id.toString().equals("손동연")&&pw.toString().equals("1234")){
             Toast.makeText(this,"로그인 성공", Toast.LENGTH_SHORT).show()
             tvLogin.text = "${id}님 환영합니다 \n 현재 000번 카트 이용중입니다."
         }else{
