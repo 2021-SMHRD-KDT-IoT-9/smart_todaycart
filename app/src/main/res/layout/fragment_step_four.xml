@@ -112,17 +112,6 @@
             app:layout_constraintStart_toStartOf="@+id/rgGender"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <Button
-            android:id="@+id/btnDoJoin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:backgroundTint="#FF9820"
-            android:text="회원 가입"
-            app:layout_constraintEnd_toEndOf="@+id/etAdd"
-            app:layout_constraintStart_toStartOf="@+id/etAdd"
-            app:layout_constraintTop_toBottomOf="@+id/etAdd" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

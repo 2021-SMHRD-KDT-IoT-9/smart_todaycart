@@ -17,7 +17,7 @@ class Main_AfterActivity : AppCompatActivity() {
         val btnSearch : Button = findViewById(R.id.btnSearch)
         val btnMap : Button = findViewById(R.id.btnMap)
         val btnCall : Button = findViewById(R.id.btnCall)
-        Toast.makeText(this,"test",Toast.LENGTH_SHORT).show()
+
         var id = intent.getStringExtra("id")
         var pw = intent.getStringExtra("pw")
         if (id.toString().equals("손동연")&&pw.toString().equals("1234")){

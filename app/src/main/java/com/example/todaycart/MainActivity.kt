@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import joinfragment.StepOneFragment
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         btnJoin.setOnClickListener {
-            val intent = Intent(this@MainActivity,StepOneFragment::class.java)
+            val intent = Intent(this@MainActivity,JoinActivity::class.java)
             startActivity(intent)
         }
         members.add(MemberVO(R.drawable.ad))

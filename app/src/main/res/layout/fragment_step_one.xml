@@ -44,15 +44,6 @@
             app:layout_constraintStart_toStartOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="#FF9820"
-            android:text="다음"
-            app:layout_constraintEnd_toEndOf="@+id/etInputId"
-            app:layout_constraintStart_toStartOf="@+id/etInputId"
-            app:layout_constraintTop_toBottomOf="@+id/etInputId" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

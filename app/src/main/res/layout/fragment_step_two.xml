@@ -45,17 +45,6 @@
             app:layout_constraintStart_toStartOf="@+id/etInputPw"
             app:layout_constraintTop_toBottomOf="@+id/etInputPw" />
 
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="#FF9820"
-            android:text="다음"
-            app:layout_constraintEnd_toEndOf="@+id/etCheckPw"
-            app:layout_constraintStart_toStartOf="@+id/etCheckPw"
-            app:layout_constraintTop_toBottomOf="@+id/etCheckPw" />
-
         <EditText
             android:id="@+id/etInputPw"
             android:layout_width="0dp"
