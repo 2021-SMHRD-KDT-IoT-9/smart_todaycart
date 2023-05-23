@@ -12,9 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Todaycart"
         tools:targetApi="31">
-        <activity
-            android:name=".JoinActivity"
-            android:exported="false" />
+
+       
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
