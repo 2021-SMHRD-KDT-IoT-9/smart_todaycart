@@ -52,14 +52,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="413dp"
+        android:layout_height="138dp"
+        app:layout_constraintEnd_toEndOf="@+id/btnAd"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPayment"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="@+id/btnAd"
+        app:layout_constraintTop_toBottomOf="@+id/btnAd" />
 
     <Button
         android:id="@+id/btnAd"
@@ -75,8 +73,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="216dp"
         android:text="결제 금액"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,6 +3,7 @@ package com.example.todaycart
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,16 +19,23 @@ class ShoppingActivity : AppCompatActivity() {
         val btnPayment : Button = findViewById(R.id.btnPayment)
         val cost1 : TextView = findViewById(R.id.cost1)
 
-        var products : MutableList<ProductVO> = mutableListOf()
-        products.add(ProductVO(R.drawable.snack,"오!감자(오리지널)","2000원"))
-        btnAd.setOnClickListener {
 
+        var products : MutableList<ProductVO> = mutableListOf()
+        var ads : MutableList<AdVO> = mutableListOf()
+
+        products.add(ProductVO(R.drawable.snack,"오!감자(오리지널)","2000원"))
+        ads.add(AdVO(R.drawable.pepsi,"펩시제로","1,800원"))
+        ads.add(AdVO(R.drawable.cida,"칠성사이다","1,800원"))
+        ads.add(AdVO(R.drawable.beer,"테라","2,000원"))
+
+        btnAd.setOnClickListener {
+            val adapter2 =  ProductAdapter(applicationContext,R.layout.ad_list2,products)
+            rcv2.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL,false)
+            rcv2.adapter=adapter2
         }
-        val adapter = ProductAdapter(applicationContext,R.layout.shopping_list,products)
+        val adapter1 = ProductAdapter(applicationContext,R.layout.shopping_list,products)
         rcv1.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
-        rcv1.adapter=adapter
-        rcv2.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
-        rcv2.adapter=adapter
+        rcv1.adapter=adapter1
 
 
     }

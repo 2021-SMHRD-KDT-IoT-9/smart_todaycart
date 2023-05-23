@@ -1,5 +1,6 @@
 package com.example.todaycart
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -26,7 +27,8 @@ class Main_AfterActivity : AppCompatActivity() {
             Toast.makeText(this,"ID/PW를 확인해주세요",Toast.LENGTH_SHORT).show()
         }
         btnBucket.setOnClickListener {
-
+            val intent = Intent(this@Main_AfterActivity,ShoppingActivity::class.java)
+            startActivity(intent)
         }
 
     }

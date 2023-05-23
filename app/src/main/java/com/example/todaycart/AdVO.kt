@@ -1,9 +1,9 @@
 package com.example.todaycart
 
-import android.widget.ImageView
+import android.widget.TextView
 
-data class ProductVO (
-    val img2 : Int = 0,
+data class AdVO (
+    val img : Int = 0,
     val name : String = "",
     val cost : String = ""
-)
+    )
