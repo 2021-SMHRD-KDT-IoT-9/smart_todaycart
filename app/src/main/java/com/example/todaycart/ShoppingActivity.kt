@@ -29,7 +29,7 @@ class ShoppingActivity : AppCompatActivity() {
         ads.add(AdVO(R.drawable.beer,"테라","2,000원"))
 
         btnAd.setOnClickListener {
-            val adapter2 =  ProductAdapter(applicationContext,R.layout.ad_list2,products)
+            val adapter2 =  AdAdapter(applicationContext,R.layout.ad_list2,ads)
             rcv2.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL,false)
             rcv2.adapter=adapter2
         }
