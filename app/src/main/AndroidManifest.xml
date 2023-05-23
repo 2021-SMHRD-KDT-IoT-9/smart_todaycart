@@ -17,6 +17,13 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Main_AfterActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ShoppingActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

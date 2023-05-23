@@ -21,11 +21,12 @@ class LoginActivity : AppCompatActivity() {
 
 
         btnDoLogin.setOnClickListener {
-           val intent = Intent(this,Main_AfterActivity::class.java)
+           val intent = Intent(this@LoginActivity,Main_AfterActivity::class.java)
             intent.putExtra("id", etId.text.toString())
             intent.putExtra("pw", etPw.text.toString())
             startActivity(intent)
-            finish()
+
+//            finish()
         }
 
         }
