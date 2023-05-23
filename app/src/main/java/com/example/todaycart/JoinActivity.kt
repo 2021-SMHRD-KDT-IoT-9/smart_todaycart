@@ -20,31 +20,42 @@ class JoinActivity : AppCompatActivity() {
         val fragmentList = arrayOf(StepTwoFragment(), StepThreeFragment(), StepFourFragment(), LastStepFragment())
         var cnt : Int = 1
 
-
             supportFragmentManager.beginTransaction().replace(
                 R.id.fl,
                 StepOneFragment()
             ).commit()
 
         btnNext.setOnClickListener {
+            var one : EditText
+            var pass : EditText
+            var pass2 : EditText
             cnt += 1
+
             if (cnt == 2){
-                val one : EditText = findViewById(R.id.etInputId)
-                if (one != null){
+                one = findViewById(R.id.etInputId)
+                if(one.text.toString() != null){
                     supportFragmentManager.beginTransaction().replace(
                         R.id.fl,
                         fragmentList[0]
                     ).commit()
                 }else{
+                    cnt--
                     Toast.makeText(this,"아이디를 입력하세요",Toast.LENGTH_SHORT).show()
 
                 }
             }
             if (cnt == 3){
-                supportFragmentManager.beginTransaction().replace(
-                    R.id.fl,
-                    fragmentList[1]
-                ).commit()
+                pass = findViewById(R.id.etInputPw)
+                pass2 = findViewById(R.id.etCheckPw)
+                if(pass.text.toString() == pass2.text.toString()){
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.fl,
+                        fragmentList[1]
+                    ).commit()
+                }else{
+                    cnt--
+                    Toast.makeText(this,"비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+                }
             }
             if (cnt == 4){
                 btnNext.text = "회원가입"
