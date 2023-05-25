@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#9C9797"
-            android:text="TextView" />
+            android:text="1" />
 
         <Button
             android:id="@+id/btnPlus"

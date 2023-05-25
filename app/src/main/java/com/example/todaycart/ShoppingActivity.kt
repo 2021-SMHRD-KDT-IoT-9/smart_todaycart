@@ -2,6 +2,8 @@ package com.example.todaycart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -36,6 +38,15 @@ class ShoppingActivity : AppCompatActivity() {
         val adapter1 = ProductAdapter(applicationContext,R.layout.shopping_list,products)
         rcv1.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
         rcv1.adapter=adapter1
+
+//        adapter1.setOnItemClickListener(object : ProductAdapter.OnItemClickListener{
+//            override fun onItemClick(v: View, products: MutableList<ProductVO>, pos: Int) {
+//            }
+//        })
+
+        val exam1 = adapter1.updateTotalCost()
+
+        Log.d("테스트", exam1.toString())
 
 
     }

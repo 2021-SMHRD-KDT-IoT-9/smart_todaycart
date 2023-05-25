@@ -9,6 +9,7 @@
         android:id="@+id/ad"
         android:layout_width="168dp"
         android:layout_height="174dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cida" />
@@ -17,6 +18,7 @@
         android:id="@+id/pnName"
         android:layout_width="100dp"
         android:layout_height="20dp"
+        android:layout_marginTop="4dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/ad"
         app:layout_constraintStart_toStartOf="@+id/ad"
@@ -27,8 +29,10 @@
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pnName"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/pnName"
-        app:layout_constraintTop_toBottomOf="@+id/pnName" />
+        app:layout_constraintTop_toBottomOf="@+id/pnName"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
