@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnDoLogin.setOnClickListener {
             val url = "http://119.200.31.135:9090/project/loginCheckMember"
-
+            // http://119.200.31.135:9090/project/loginCheckMember
             val id = etId.text.toString()
             val pw = etPw.text.toString()
             if (id.isNotEmpty() && pw.isNotEmpty()) {
@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                         }
                     },
-                    Response.ErrorListener {
+                    Response.ErrorListener { error -> error.printStackTrace()
                         Toast.makeText(this, "서버 통신 실패", Toast.LENGTH_SHORT).show()
                     }
                 ) {
