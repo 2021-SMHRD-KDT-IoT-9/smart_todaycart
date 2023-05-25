@@ -8,24 +8,27 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.properties.Delegates
 
-class ProductAdapter(context: Context, layout : Int, products : MutableList<ProductVO>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(context: Context, layout : Int,products : MutableList<ProductVO>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     val context = context
-    val layout = layout
     val products = products
-    lateinit var totalCost : Int
-    lateinit var vh : ViewHolder
+    val layout  = layout
+
+
+    var currentQuantity: Int = 1
+    var newQuantity: Int = 0
     val inflater = LayoutInflater.from(context)
+
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val productName : TextView = view.findViewById(R.id.productName)
-        val cost : TextView = view.findViewById(R.id.cost)
-        val quantity : TextView = view.findViewById(R.id.quantity)
-        val img2 : ImageView = view.findViewById(R.id.img2)
+        val productName : TextView = view.findViewById(R.id.productName) // 제품 이름
+        val cost : TextView = view.findViewById(R.id.cost) // 제품 가격
+        val quantity : TextView = view.findViewById(R.id.quantity) // 제품 갯수
+        val img2 : ImageView = view.findViewById(R.id.img2) // 제품 사진
         val btnPlus : Button = view.findViewById(R.id.btnPlus)
         val btnMinus : Button = view.findViewById(R.id.btnMinus)
+        val btnDelete : ImageView = view.findViewById(R.id.btnDelete)
     }
 
 
@@ -42,28 +45,33 @@ class ProductAdapter(context: Context, layout : Int, products : MutableList<Prod
         holder.cost.text = products[position].cost
         holder.productName.text = products[position].name
         holder.img2.setImageResource(products[position].img2)
+        holder.btnDelete.setImageResource(R.drawable.baseline_delete_24)
         holder.btnPlus.setOnClickListener {
-            val currentQuantity = holder.quantity.text.toString().toInt()
-            val newQuantity = currentQuantity + 1
+            currentQuantity = holder.quantity.text.toString().toInt()
+            newQuantity = currentQuantity + 1
             holder.quantity.text = newQuantity.toString()
-            totalCost = newQuantity * holder.cost.text.toString().toInt()
-          updateTotalCost()
+            Log.d("TEST1",newQuantity.toString())
         }
         holder.btnMinus.setOnClickListener {
-            val currentQuantity = holder.quantity.text.toString().toInt()
+            currentQuantity = holder.quantity.text.toString().toInt()
             if (currentQuantity > 0) {
-                val newQuantity = currentQuantity - 1
-                holder.quantity.text = newQuantity.toString()
-                totalCost = newQuantity * holder.cost.text.toString().toInt()
-                updateTotalCost()
+            newQuantity = currentQuantity - 1
+            holder.quantity.text = newQuantity.toString()
+            Log.d("TEST2", newQuantity.toString())
+            }else {
+                Toast.makeText(context,"message",Toast.LENGTH_SHORT).show()
             }
 
-        }
-    }
+            val shoppingActivity = context as ShoppingActivity
+            var amount = holder.quantity.text.toString().toInt()
+            Log.d("TEST3",amount.toString())
+            val price = holder.cost.text.toString().toInt()
+            Log.d("TEST4",price.toString())
+            shoppingActivity.changeCost(price * amount)
 
-    fun updateTotalCost() : Int {
-        totalCost =
-        return totalCost
-    }
+        }
+          }
+
+
 }
 

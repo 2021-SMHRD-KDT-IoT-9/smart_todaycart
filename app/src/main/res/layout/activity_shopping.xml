@@ -10,13 +10,14 @@
         android:id="@+id/linearLayout"
         android:layout_width="407dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="504dp"
+        android:layout_marginBottom="552dp"
         android:background="@android:color/black"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        android:orientation="horizontal" />
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -29,24 +30,25 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="291dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="231dp"
+        android:layout_height="49dp"
         android:layout_marginBottom="40dp"
         android:text="장바구니"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv1"
-        android:layout_width="418dp"
-        android:layout_height="107dp"
+        android:layout_width="409dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -86,8 +88,8 @@
         android:id="@+id/cost1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="15dp"
+        android:text="1000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/totalCost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.175"
