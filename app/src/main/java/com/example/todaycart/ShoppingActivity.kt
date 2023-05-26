@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ShoppingActivity : AppCompatActivity() {
-    var cost = 0
+
     lateinit var cost1 : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,7 @@ class ShoppingActivity : AppCompatActivity() {
         val rcv2 : RecyclerView = findViewById(R.id.rcv2)
         val btnAd : Button = findViewById(R.id.btnAd)
         cost1 = findViewById(R.id.cost1)
+        cost1.text = "hi"
 
         val products : MutableList<ProductVO> = mutableListOf()
         val ads : MutableList<AdVO> = mutableListOf()
@@ -27,8 +28,8 @@ class ShoppingActivity : AppCompatActivity() {
 
         products.add(ProductVO(R.drawable.snack,"오!감자(오리지널)","2000"))
 
-        val adapter = ProductAdapter(applicationContext,R.layout.ad_list,products)
-        rcv1.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
+        val adapter = ProductAdapter(this ,R.layout.ad_list,products)
+        rcv1.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rcv1.adapter = adapter
 
         btnAd.setOnClickListener {
@@ -41,6 +42,6 @@ class ShoppingActivity : AppCompatActivity() {
     }
     fun changeCost(cost:Int){
         cost1.text = cost.toString()
-        Log.d("TEST5",cost1.toString())
+//        cost1.text = "hello"
     }
 }

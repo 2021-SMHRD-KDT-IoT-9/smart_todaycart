@@ -8,18 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class ProductAdapter(context: Context, layout : Int,products : MutableList<ProductVO>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
-    val context = context
-    val products = products
-    val layout  = layout
+class ProductAdapter(val context: Context, val layout : Int, val products : MutableList<ProductVO>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-
-    var currentQuantity: Int = 1
-    var newQuantity: Int = 0
-    val inflater = LayoutInflater.from(context)
+    private var currentQuantity: Int = 1
+    private var newQuantity: Int = 0
+    private val inflater = LayoutInflater.from(context)
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val productName : TextView = view.findViewById(R.id.productName) // 제품 이름
@@ -28,7 +23,6 @@ class ProductAdapter(context: Context, layout : Int,products : MutableList<Produ
         val img2 : ImageView = view.findViewById(R.id.img2) // 제품 사진
         val btnPlus : Button = view.findViewById(R.id.btnPlus)
         val btnMinus : Button = view.findViewById(R.id.btnMinus)
-        val btnDelete : ImageView = view.findViewById(R.id.btnDelete)
     }
 
 
@@ -45,12 +39,15 @@ class ProductAdapter(context: Context, layout : Int,products : MutableList<Produ
         holder.cost.text = products[position].cost
         holder.productName.text = products[position].name
         holder.img2.setImageResource(products[position].img2)
-        holder.btnDelete.setImageResource(R.drawable.baseline_delete_24)
         holder.btnPlus.setOnClickListener {
             currentQuantity = holder.quantity.text.toString().toInt()
             newQuantity = currentQuantity + 1
             holder.quantity.text = newQuantity.toString()
             Log.d("TEST1",newQuantity.toString())
+            val shoppingActivity = context as ShoppingActivity
+            var amount = holder.quantity.text.toString().toInt()
+            val price = holder.cost.text.toString().toInt()
+            shoppingActivity.changeCost(price * amount)
         }
         holder.btnMinus.setOnClickListener {
             currentQuantity = holder.quantity.text.toString().toInt()
@@ -58,19 +55,15 @@ class ProductAdapter(context: Context, layout : Int,products : MutableList<Produ
             newQuantity = currentQuantity - 1
             holder.quantity.text = newQuantity.toString()
             Log.d("TEST2", newQuantity.toString())
-            }else {
-                Toast.makeText(context,"message",Toast.LENGTH_SHORT).show()
+                val shoppingActivity = context as ShoppingActivity
+                var amount = holder.quantity.text.toString().toInt()
+                val price = holder.cost.text.toString().toInt()
+                shoppingActivity.changeCost(price * amount)
             }
 
-            val shoppingActivity = context as ShoppingActivity
-            var amount = holder.quantity.text.toString().toInt()
-            Log.d("TEST3",amount.toString())
-            val price = holder.cost.text.toString().toInt()
-            Log.d("TEST4",price.toString())
-            shoppingActivity.changeCost(price * amount)
-
         }
-          }
+
+    }
 
 
 }

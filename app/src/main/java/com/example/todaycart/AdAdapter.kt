@@ -22,8 +22,6 @@ class AdAdapter(context: Context, layout : Int, ads : MutableList<AdVO>): Recycl
         val pnCost : TextView = view.findViewById(R.id.pnCost)
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdAdapter.ViewHolder {
         val view = inflater.inflate(R.layout.ad_list2,parent,false)
         return ViewHolder(view)
