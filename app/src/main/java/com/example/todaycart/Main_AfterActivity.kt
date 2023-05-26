@@ -18,9 +18,9 @@ class Main_AfterActivity : AppCompatActivity() {
         val btnMap : Button = findViewById(R.id.btnMap)
         val btnCall : Button = findViewById(R.id.btnCall)
 
-        var id = intent.getStringExtra("id")
-        var pw = intent.getStringExtra("pw")
-        if (id.toString().equals("손동연")&&pw.toString().equals("1234")){
+        var id = intent.getStringExtra("member_id")
+        var pw = intent.getStringExtra("member_pw")
+        if (id != null &&pw != null){
             Toast.makeText(this,"로그인 성공", Toast.LENGTH_SHORT).show()
             tvLogin.text = "${id}님 환영합니다 \n 현재 000번 카트 이용중입니다."
         }else{
