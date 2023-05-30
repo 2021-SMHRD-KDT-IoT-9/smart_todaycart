@@ -1,5 +1,6 @@
 package com.example.todaycart
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -16,6 +17,12 @@ class CallActivity : AppCompatActivity() {
         val queue : RequestQueue = Volley.newRequestQueue(this)
         val url = "http://119.200.31.135:9090/project/call"
         Request.Method.GET
+
+        btnGoBack.setOnClickListener {
+            val intent = Intent(this,Main_AfterActivity::class.java)
+            startActivity(intent)
+
+        }
 
     }
 }
