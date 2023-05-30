@@ -6,6 +6,7 @@ import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etId: EditText
     private lateinit var etPw: EditText
     private lateinit var btnDoLogin: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

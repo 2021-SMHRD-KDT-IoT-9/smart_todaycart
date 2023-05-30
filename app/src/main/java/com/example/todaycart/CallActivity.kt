@@ -1,5 +1,6 @@
 package com.example.todaycart
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,9 +20,8 @@ class CallActivity : AppCompatActivity() {
         Request.Method.GET
 
         btnGoBack.setOnClickListener {
-            val intent = Intent(this,Main_AfterActivity::class.java)
+            val intent = Intent(this, Main_AfterActivity::class.java)
             startActivity(intent)
-
         }
 
     }

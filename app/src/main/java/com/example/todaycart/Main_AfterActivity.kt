@@ -1,6 +1,8 @@
 package com.example.todaycart
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -9,6 +11,8 @@ import android.widget.Toast
 import kotlin.math.log
 
 class Main_AfterActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_after)
@@ -17,6 +21,8 @@ class Main_AfterActivity : AppCompatActivity() {
         val btnSearch : Button = findViewById(R.id.btnSearch)
         val btnMap : Button = findViewById(R.id.btnMap)
         val btnCall : Button = findViewById(R.id.btnCall)
+
+
 
         var id = intent.getStringExtra("member_id")
         var pw = intent.getStringExtra("member_pw")
@@ -36,8 +42,10 @@ class Main_AfterActivity : AppCompatActivity() {
             startActivity(intent)
         }
         btnCall.setOnClickListener {
-            val intent = Intent(this,CallActivity::class.java)
-            startActivity(intent)
+                val intent = Intent(this, CallActivity::class.java)
+                startActivity(intent)
+            }
         }
+
+
     }
-}
