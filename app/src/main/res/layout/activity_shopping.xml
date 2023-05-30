@@ -77,8 +77,8 @@
         android:id="@+id/totalCost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="264dp"
         android:text="결제 금액"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,5 +106,13 @@
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toEndOf="@+id/totalCost"
         app:layout_constraintTop_toBottomOf="@+id/cost1" />
+
+    <Button
+        android:id="@+id/btnRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장바구니 나가기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

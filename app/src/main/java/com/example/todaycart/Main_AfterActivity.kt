@@ -34,7 +34,17 @@ class Main_AfterActivity : AppCompatActivity() {
         }
         btnBucket.setOnClickListener {
             val intent = Intent(this@Main_AfterActivity,ShoppingActivity::class.java)
+
             startActivity(intent)
+        }
+        btnSearch.setOnClickListener {
+
+        }
+        btnMap.setOnClickListener {
+
+        }
+        btnCall.setOnClickListener {
+
         }
 
         btnSearch.setOnClickListener{
