@@ -15,21 +15,27 @@
 
     <TextView
         android:id="@+id/productName"
-        android:layout_width="145dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="68dp"
+        android:gravity="center|right"
         android:text="오!감자(오리지널)"
-        app:layout_constraintStart_toEndOf="@+id/img2"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img2" />
 
     <TextView
         android:id="@+id/cost"
-        android:layout_width="43dp"
-        android:layout_height="22dp"
+        android:layout_width="67dp"
+        android:layout_height="27dp"
         android:layout_marginStart="104dp"
         android:layout_marginTop="20dp"
+        android:gravity="center|right"
         android:text="가격"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/img2"
         app:layout_constraintTop_toBottomOf="@+id/productName" />
 
@@ -71,13 +77,14 @@
             android:text="+" />
     </LinearLayout>
 
-    <ImageView
+    <Button
         android:id="@+id/btnDelete"
-        android:layout_width="100dp"
-        android:layout_height="83dp"
+        android:layout_width="54dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/baseline_delete_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_delete_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
