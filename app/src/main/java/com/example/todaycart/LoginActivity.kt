@@ -49,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
                 params.put("member_pw", pw)
 
 
-
                 val request = object : JsonObjectRequest(
                     Request.Method.POST,
                     url,
@@ -62,6 +61,7 @@ class LoginActivity : AppCompatActivity() {
                             val intent = Intent(this@LoginActivity, Main_AfterActivity::class.java)
                             intent.putExtra("member_id", id)
                             intent.putExtra("member_pw", pw)
+                            // seeeion으로 묶는 부분
                             startActivity(intent)
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -83,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
                         return headers
                     }
                 }
-
 
 
                 queue.add(request)
