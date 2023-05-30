@@ -43,11 +43,9 @@ class JoinTwoFragment : Fragment() {
                 editor.putString("pw", inputPw)
                 editor.commit()
 
-                // 꺼내는 과정
 
-                val sf2 = requireActivity().getSharedPreferences("join", Context.MODE_PRIVATE)
-                val inputPw2 = sf2.getString("pw", "error_pw")
-            }else if(inputPw =="" || checkPw == ""){
+            }
+            if(inputPw =="" || checkPw == ""){
                 Toast.makeText(context,"비밀번호를 입력해주세요",Toast.LENGTH_SHORT).show()
             }else if (inputPw != checkPw){
                 Toast.makeText(context, "비밀번호가 일치하지 않습니다",Toast.LENGTH_SHORT).show()

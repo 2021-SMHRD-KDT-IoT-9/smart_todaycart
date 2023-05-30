@@ -21,21 +21,25 @@ class JoinThreeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_join_three, container, false)
         val etTel : EditText = view.findViewById(R.id.etTel)
+        val etName: EditText = view.findViewById(R.id.etName)
         val btnThree : Button = view.findViewById(R.id.btnThree)
 
         btnThree.setOnClickListener {
             val tel = etTel.text.toString()
-            if (tel != ""){
+            val name = etName.text.toString()
+            if (tel != ""&&name!=""){
                 val activity = activity as JoinActivity
                 activity.replaceFragment(JoinFourFragment())
                 val sf = requireActivity().getSharedPreferences("join", Context.MODE_PRIVATE)
                 val editor : SharedPreferences.Editor = sf.edit()
                 // editor에 etUrl에 있는 값을 저장 : Key/value
                 editor.putString("tel", tel)
+                editor.putString("name", name)
                 editor.commit()
 
-                val sf2 = requireActivity().getSharedPreferences("join", Context.MODE_PRIVATE)
-                val tel2 = sf2.getString("tel", "error_tel")
+            }
+            if (name == ""){
+                Toast.makeText(context,"이름을 입력하세요",Toast.LENGTH_SHORT).show()
             }else if (tel == ""){
                 Toast.makeText(context,"휴대전화 번호를 입력하세요",Toast.LENGTH_SHORT).show()
             }

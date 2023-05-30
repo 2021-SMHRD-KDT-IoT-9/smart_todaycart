@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
+import android.widget.Toast
 
 
 class JoinFourFragment : Fragment() {
@@ -27,6 +28,35 @@ class JoinFourFragment : Fragment() {
         val btnFemale : Button = view.findViewById(R.id.btnFemale)
         val etAdd : EditText = view.findViewById(R.id.etAdd)
 
+
+
+        // 라디오 클릭에 따른 버튼 값 감지하여 내장 DB에 저장
+
+        rgGender.setOnCheckedChangeListener({ radioGroup, optionId ->
+            val male = btnMale
+            val female = btnFemale
+            run {
+
+                when (optionId) {
+                    R.id.btnMale -> {
+                        // db에 남자값 넣기 코드
+                        val sf = requireActivity().getSharedPreferences("join",Context.MODE_PRIVATE)
+                        val editor : SharedPreferences.Editor = sf.edit()
+                        editor.putString("member_gender", "남")
+                        editor.commit()
+                    }
+
+                    R.id.btnFemale -> {
+                        // db에 여자값 넣기 코드
+                        val sf = requireActivity().getSharedPreferences("join",Context.MODE_PRIVATE)
+                        val editor : SharedPreferences.Editor = sf.edit()
+                        editor.putString("member_gender", "여")
+                        editor.commit()
+                    }
+                }
+            }
+        })
+
         btnFour.setOnClickListener {
             val address = etAdd.text.toString()
 
@@ -38,12 +68,21 @@ class JoinFourFragment : Fragment() {
 
                 editor.putString("address", address)
                 editor.commit()
+                // DB에서 저장된 성별 값 가져오기
 
-                val sf2 = requireActivity().getSharedPreferences("join", Context.MODE_PRIVATE)
-                val address2 = sf2.getString("address", "error_address")
 
             }
+
         }
+
+
+
+
+
+
+
+
+
 
         return view
     }

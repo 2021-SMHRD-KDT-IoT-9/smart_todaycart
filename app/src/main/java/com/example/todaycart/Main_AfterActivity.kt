@@ -31,5 +31,13 @@ class Main_AfterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnSearch.setOnClickListener{
+            val intent = Intent(this,SearchActivity::class.java)
+            startActivity(intent)
+        }
+        btnCall.setOnClickListener {
+            val intent = Intent(this,CallActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

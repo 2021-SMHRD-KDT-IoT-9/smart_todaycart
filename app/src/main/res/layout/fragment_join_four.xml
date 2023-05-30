@@ -117,7 +117,7 @@
             android:layout_marginTop="50dp"
 
             android:backgroundTint="#FF9800"
-            android:text="다음"
+            android:text="회원가입 완료"
             app:layout_constraintEnd_toEndOf="@+id/etAdd"
             app:layout_constraintStart_toStartOf="@+id/etAdd"
             app:layout_constraintTop_toBottomOf="@+id/etAdd" />

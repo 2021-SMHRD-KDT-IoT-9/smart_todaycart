@@ -1,4 +1,4 @@
-package com.example. todaycart
+package com.example.todaycart
 
 import android.content.Context
 import android.content.Intent
@@ -18,6 +18,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.todaycart.R
 import org.json.JSONObject
 
 
@@ -44,6 +45,9 @@ class JoinFiveFragment : Fragment() {
             val inputPw2 = sf2.getString("pw", "error_pw")
             val tel2 = sf2.getString("tel", "error_tel")
             val address2 = sf2.getString("address", "error_address")
+            val name2 = sf2.getString("name", "error_name")
+            val gender2 = sf2.getString("member_gender", "error_gender")
+
 
             val url = "http://119.200.31.135:9090/project/newMember"
             val sf = requireActivity().getSharedPreferences("join", Context.MODE_PRIVATE)
@@ -53,8 +57,11 @@ class JoinFiveFragment : Fragment() {
             params.put("Content-Type", "application/json")
             params.put("member_id",id2)
             params.put("member_pw", inputPw2)
+            params.put("member_name", name2)
             params.put("member_tel", tel2)
+            params.put("member_gender", gender2)
             params.put("member_add", address2)
+
 
             val request = object : JsonObjectRequest(
                 Request.Method.POST,
@@ -68,7 +75,9 @@ class JoinFiveFragment : Fragment() {
                         val intent = Intent(context, MainActivity::class.java)
                         intent.putExtra("member_id", id2)
                         intent.putExtra("member_pw", inputPw2)
+                        intent.putExtra("member_name", name2)
                         intent.putExtra("member_tel", tel2)
+                        intent.putExtra("member_gender", gender2)
                         intent.putExtra("member_add", address2)
                         startActivity(intent)
                     } else {
