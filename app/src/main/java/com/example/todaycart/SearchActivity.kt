@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnKeyListener
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -81,6 +80,7 @@ class SearchActivity : AppCompatActivity() {
         btnBackPage.setOnClickListener {
             val intent = Intent(this,Main_AfterActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
