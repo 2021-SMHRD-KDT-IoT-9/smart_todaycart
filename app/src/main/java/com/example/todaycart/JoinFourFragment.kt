@@ -27,7 +27,7 @@ class JoinFourFragment : Fragment() {
         val btnMale : Button = view.findViewById(R.id.btnMale)
         val btnFemale : Button = view.findViewById(R.id.btnFemale)
         val etAdd : EditText = view.findViewById(R.id.etAdd)
-
+        val etBirth : EditText = view.findViewById(R.id.etBirth)
 
 
         // 라디오 클릭에 따른 버튼 값 감지하여 내장 DB에 저장
@@ -59,14 +59,15 @@ class JoinFourFragment : Fragment() {
 
         btnFour.setOnClickListener {
             val address = etAdd.text.toString()
-
-            if (address != ""){
+            val birth = etBirth.text.toString()
+            if (address != ""&& birth != ""){
                 val activity = activity as JoinActivity
                 activity.replaceFragment(JoinFiveFragment())
                 val sf = requireActivity().getSharedPreferences("join", Context.MODE_PRIVATE)
                 val editor : SharedPreferences.Editor = sf.edit()
 
                 editor.putString("address", address)
+                editor.putString("birth", birth)
                 editor.commit()
                 // DB에서 저장된 성별 값 가져오기
 
@@ -74,15 +75,6 @@ class JoinFourFragment : Fragment() {
             }
 
         }
-
-
-
-
-
-
-
-
-
 
         return view
     }

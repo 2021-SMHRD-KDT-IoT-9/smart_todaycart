@@ -47,6 +47,7 @@ class JoinFiveFragment : Fragment() {
             val address2 = sf2.getString("address", "error_address")
             val name2 = sf2.getString("name", "error_name")
             val gender2 = sf2.getString("member_gender", "error_gender")
+            val birth2 = sf2.getString("birth","error_birth")
 
 
             val url = "http://119.200.31.135:9090/project/newMember"
@@ -61,6 +62,7 @@ class JoinFiveFragment : Fragment() {
             params.put("member_tel", tel2)
             params.put("member_gender", gender2)
             params.put("member_add", address2)
+            params.put("member_birth", birth2)
 
 
             val request = object : JsonObjectRequest(
@@ -79,7 +81,9 @@ class JoinFiveFragment : Fragment() {
                         intent.putExtra("member_tel", tel2)
                         intent.putExtra("member_gender", gender2)
                         intent.putExtra("member_add", address2)
+                        intent.putExtra("member_birth",birth2)
                         startActivity(intent)
+
                     } else {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }

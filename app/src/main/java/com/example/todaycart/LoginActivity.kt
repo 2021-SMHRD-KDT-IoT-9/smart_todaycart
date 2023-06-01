@@ -68,10 +68,8 @@ class LoginActivity : AppCompatActivity() {
                             editor.putString("member_id",id)
                             editor.putString("member_pw",pw)
                             editor.commit()
-
-
-
                             startActivity(intent)
+                            finish()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                         }
