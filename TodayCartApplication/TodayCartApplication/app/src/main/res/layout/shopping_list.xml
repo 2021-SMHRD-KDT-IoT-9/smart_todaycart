@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/img2"
+        android:layout_width="126dp"
+        android:layout_height="147dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/snack" />
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="169dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="68dp"
+        android:gravity="center|right"
+        android:text="오!감자(오리지널)"
+        android:textColor="#714513"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img2" />
+
+    <TextView
+        android:id="@+id/cost"
+        android:layout_width="67dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center|right"
+        android:text="가격"
+        android:textColor="#714513"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/img2"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:background="#9C9797"
+        android:backgroundTint="#B3ABAB"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/img2"
+        app:layout_constraintTop_toBottomOf="@+id/cost">
+
+        <Button
+            android:id="@+id/btnMinus"
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0"
+            android:background="#9C9797" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="77dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="1"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnPlus"
+            android:layout_width="47dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0"
+            android:background="#9C9797"
+            android:backgroundTint="#9C9797" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_close_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
