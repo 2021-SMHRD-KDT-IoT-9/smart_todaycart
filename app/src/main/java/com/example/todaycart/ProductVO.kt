@@ -1,8 +1,12 @@
 package com.example.todaycart
 
-data class ProductVO (
-    val img2 : Int = 0,
-    val name : String = "",
-    val cost : String = "",
-    val location : String = ""
+import android.graphics.Bitmap
+
+data class ProductVO(
+    var p_code: Int = 0,
+    var p_name: String = "",
+    var p_price: Int= 0,
+    var p_loc: String = "",
+    var p_weight: Int = 0,
+    var p_img: String = ""
 )

@@ -9,7 +9,7 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://schemas.android.com/tools ">
+    xsi:schemaLocation="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

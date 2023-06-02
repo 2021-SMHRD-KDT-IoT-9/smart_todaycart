@@ -13,9 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         // 가나다라
-
         val btnLogin : Button = findViewById(R.id.btnLogin)
         val btnJoin : Button = findViewById(R.id.btnJoin)
         val rc : RecyclerView = findViewById(R.id.rc1)

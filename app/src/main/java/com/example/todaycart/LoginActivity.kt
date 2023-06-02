@@ -1,5 +1,6 @@
 package com.example.todaycart
 
+import android.content.Context
 import android.content.ContextParams
 import android.content.Intent
 import android.content.res.Resources
@@ -27,11 +28,13 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        val sharedPreferences = getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
         etId = findViewById(R.id.etId)
         etPw = findViewById(R.id.etPw)
         btnDoLogin = findViewById(R.id.btnDoLogin)
-
+        editor.putString("id",etId.toString())
+        Log.d("id1",""+editor)
         queue = Volley.newRequestQueue(this)
 
         btnDoLogin.setOnClickListener {
@@ -39,9 +42,9 @@ class LoginActivity : AppCompatActivity() {
 
             val id = etId.text.toString()
             val pw = etPw.text.toString()
-
-
-
+            Log.d("testid", id)
+            editor.putString("id",etId.text.toString())
+            editor.apply()
             if (id.isNotEmpty() && pw.isNotEmpty()) {
                 val params = JSONObject()
                 params.put("Content-Type", "application/json")
@@ -83,7 +86,6 @@ class LoginActivity : AppCompatActivity() {
                         return headers
                     }
                 }
-
 
                 queue.add(request)
 

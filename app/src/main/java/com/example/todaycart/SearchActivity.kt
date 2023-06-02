@@ -34,10 +34,10 @@ class SearchActivity : AppCompatActivity() {
         rcvList.adapter = searchAdapter
 
         // on below line we are adding data to our list
-        searchList.add(ProductVO(R.drawable.beer, "테라", "2000원", "주류 1-2"))
-        searchList.add(ProductVO(R.drawable.cida, "칠성사이다","2000원", "음료 1-3"))
-        searchList.add(ProductVO(R.drawable.pepsi, "펩시","2000원", "음료 1-3"))
-        searchList.add(ProductVO(R.drawable.snack, "오감자","1500원","스낵류 2-2"))
+        searchList.add(ProductVO(R.drawable.beer, "테라", 2000, "주류 1-2"))
+        searchList.add(ProductVO(R.drawable.cida, "칠성사이다",2000, "음료 1-3"))
+        searchList.add(ProductVO(R.drawable.pepsi, "펩시",2000, "음료 1-3"))
+        searchList.add(ProductVO(R.drawable.snack, "오감자",2000,"스낵류 2-2"))
 
 
         // on below line we are notifying adapter
@@ -85,7 +85,7 @@ class SearchActivity : AppCompatActivity() {
         // running a for loop to compare elements.
         for (item in searchList) {
             // checking if the entered string matched with any item of our recycler view.
-            if (item.name.toLowerCase().contains(text.toLowerCase())) {
+            if (item.p_name.toLowerCase().contains(text.toLowerCase())) {
                 // if the item is matched we are
                 // adding it to our filtered list.
                 filteredlist.add(item)

@@ -42,10 +42,10 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: SearchAdapter.CourseViewHolder, position: Int) {
         // on below line we are setting data to our text view and our image view.
-        holder.tvName.text = searchList.get(position).name
-        holder.imgProduct.setImageResource(searchList.get(position).img2)
-        holder.tvLoc.text = searchList.get(position).location
-        holder.tvPrice.text = searchList.get(position).cost
+        holder.tvName.text = searchList.get(position).p_name
+        holder.imgProduct.setImageResource(searchList.get(position).p_img.toInt())
+        holder.tvLoc.text = searchList.get(position).p_loc
+        holder.tvPrice.text = searchList.get(position).p_price.toString()
     }
 
     override fun getItemCount(): Int {

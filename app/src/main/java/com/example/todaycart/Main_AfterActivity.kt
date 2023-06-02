@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import kotlin.math.log
+import com.android.volley.Request
+import com.android.volley.Response
+
+
 
 class Main_AfterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +20,6 @@ class Main_AfterActivity : AppCompatActivity() {
         val btnSearch : Button = findViewById(R.id.btnSearch)
         val btnMap : Button = findViewById(R.id.btnMap)
         val btnCall : Button = findViewById(R.id.btnCall)
-
         var id = intent.getStringExtra("member_id")
         var pw = intent.getStringExtra("member_pw")
         if (id != null &&pw != null){
@@ -27,18 +29,9 @@ class Main_AfterActivity : AppCompatActivity() {
             Toast.makeText(this,"ID/PW를 확인해주세요",Toast.LENGTH_SHORT).show()
         }
         btnBucket.setOnClickListener {
+
             val intent = Intent(this@Main_AfterActivity,ShoppingActivity::class.java)
-
             startActivity(intent)
-        }
-        btnSearch.setOnClickListener {
-
-        }
-        btnMap.setOnClickListener {
-
-        }
-        btnCall.setOnClickListener {
-
         }
 
         btnSearch.setOnClickListener{
@@ -50,4 +43,5 @@ class Main_AfterActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }
