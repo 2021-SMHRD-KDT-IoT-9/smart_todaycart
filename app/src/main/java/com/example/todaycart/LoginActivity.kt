@@ -3,10 +3,12 @@ package com.example.todaycart
 import android.content.Context
 import android.content.ContextParams
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -25,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etPw: EditText
     private lateinit var btnDoLogin: Button
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -38,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
 
         btnDoLogin.setOnClickListener {
+            val sf = getSharedPreferences("login", Context.MODE_PRIVATE)
+            val editor : SharedPreferences.Editor = sf.edit()
             val url = "http://119.200.31.135:9090/project/loginCheckMember"
 
             val id = etId.text.toString()
@@ -62,10 +67,11 @@ class LoginActivity : AppCompatActivity() {
 
                         if (success) {
                             val intent = Intent(this@LoginActivity, Main_AfterActivity::class.java)
-                            intent.putExtra("member_id", id)
-                            intent.putExtra("member_pw", pw)
-                            // seeeion으로 묶는 부분
+                            editor.putString("member_id",id)
+                            editor.putString("member_pw",pw)
+                            editor.commit()
                             startActivity(intent)
+                            finish()
                         } else {
                             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                         }
