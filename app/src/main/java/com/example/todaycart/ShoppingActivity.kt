@@ -45,7 +45,7 @@ class ShoppingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shopping)
         val id = "손동연"
         val quantity = 5
-        val totalCost = 6000
+        val totalCost = 6000.0
 //
 //       val sharedPreferences = getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
 //       val id =  sharedPreferences.getString("id", "")
@@ -55,8 +55,6 @@ class ShoppingActivity : AppCompatActivity() {
         val rcv2: RecyclerView = findViewById(R.id.rcv2)
         val btnAd: Button = findViewById(R.id.btnAd)
         val btnPayment: Button = findViewById(R.id.btnPayment)
-
-
 
         cost1 = findViewById(R.id.cost1)
 
@@ -79,8 +77,8 @@ class ShoppingActivity : AppCompatActivity() {
             val items: MutableList<BootItem> = ArrayList()
             val item1 = BootItem().setName(ProductVO().p_name)
                 .setId(ProductVO().p_code.toString())
-                .setQty(quantity?.toInt()!!)
-                .setPrice(totalCost!!.toDouble())
+                .setQty(quantity)
+                .setPrice(totalCost)
             val payload = Payload()
             payload.setApplicationId(application_id)
                 .setOrderName("부트페이 결제테스트")
