@@ -4,11 +4,16 @@ plugins {
 }
 
 android {
-    namespace 'com.example.todaycart'
+    namespace 'com.example.todaycartapplication'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.todaycart"
+
+        //부트페이관련
+        minSdk 16 //android 모듈은 16, android-bio 모듈은 23 이상부터 지원
+        targetSdk 32 //Android 11 지원을 위해 30 이상 버전을 필수로 지정해야함
+
+        applicationId "com.example.todaycartapplication"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -31,19 +36,18 @@ android {
         jvmTarget = '1.8'
     }
 }
+
 dependencies {
 
+    implementation 'io.github.bootpay:android:+' //부트페이 최신 버전 추천
+    implementation 'io.github.bootpay:android-bio:+' //생체인증 결제 사용시 추가
+
+
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-    implementation 'com.android.volley:volley:1.2.1'
-    implementation "com.squareup.okhttp3:okhttp:4.9.3"
-    implementation 'com.google.code.gson:gson:2.8.9'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 }

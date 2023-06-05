@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Todaycart" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.TodayCartApplication" parent="Theme.Material3.DayNight.NoActionBar"> <!--문제시,테마바꾸기-->
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Todaycart" parent="Base.Theme.Todaycart" />
+    <style name="Theme.TodayCartApplication" parent="Base.Theme.TodayCartApplication" />
 </resources>

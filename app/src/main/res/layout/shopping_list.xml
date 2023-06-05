@@ -1,90 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:backgroundTint="#FFFFFF"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="4dp"
+    xsi:schemaLocation="http://schemas.android.com/tools ">
 
-    <ImageView
-        android:id="@+id/img2"
-        android:layout_width="126dp"
-        android:layout_height="147dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/snack" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#FFFFFF"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="6dp">
 
-    <TextView
-        android:id="@+id/productName"
-        android:layout_width="169dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="68dp"
-        android:gravity="center|right"
-        android:text="오!감자(오리지널)"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/img2" />
-
-    <TextView
-        android:id="@+id/cost"
-        android:layout_width="67dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center|right"
-        android:text="가격"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/img2"
-        app:layout_constraintTop_toBottomOf="@+id/productName" />
-
-    <LinearLayout
-        android:layout_width="240dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:background="#9C9797"
-        android:backgroundTint="#B3ABAB"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toEndOf="@+id/img2"
-        app:layout_constraintTop_toBottomOf="@+id/cost">
-
-        <Button
-            android:id="@+id/btnMinus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0"
-            android:background="#9C9797"
-            android:text="-" />
+        <ImageView
+            android:id="@+id/img2"
+            android:layout_width="126dp"
+            android:layout_height="147dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/snack" />
 
         <TextView
-            android:id="@+id/quantity"
+            android:id="@+id/productName"
+            android:layout_width="169dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center|right"
+            android:text="오!감자(오리지널)"
+            android:textColor="#714513"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintTop_toTopOf="@+id/img2" />
+
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="77dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center|right"
+            android:text="가격"
+            android:textColor="#714513"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/productName"
+            app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+        <LinearLayout
+            android:layout_width="185dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:background="#FF9800"
+            android:backgroundTint="#FF9800"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img2"
+            app:layout_constraintTop_toBottomOf="@+id/cost">
+
+            <ImageButton
+                android:id="@+id/btnMinus"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                app:srcCompat="@drawable/minus" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="77dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnPlus"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                app:srcCompat="@drawable/plus" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="1" />
-
-        <Button
-            android:id="@+id/btnPlus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:alpha="0"
-            android:background="#9C9797"
-            android:backgroundTint="#9C9797"
-            android:text="+" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="54dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/baseline_delete_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_close_24" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
