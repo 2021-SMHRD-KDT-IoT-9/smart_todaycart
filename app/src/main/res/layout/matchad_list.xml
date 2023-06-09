@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/mtimg1"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/beer" />
+
+    <TextView
+        android:id="@+id/mtTvName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/mtimg1"
+        app:layout_constraintTop_toTopOf="@+id/mtimg1" />
+
+    <TextView
+        android:id="@+id/mtTvPrice1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/mtimg1"
+        app:layout_constraintStart_toEndOf="@+id/mtimg1" />
+
+    <ImageView
+        android:id="@+id/mtimg2"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/mtTvPrice1"
+        app:layout_constraintStart_toEndOf="@+id/mtTvName1"
+        app:layout_constraintTop_toTopOf="@+id/mtTvName1"
+        app:srcCompat="@drawable/cida" />
+
+    <TextView
+        android:id="@+id/mtTvName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/mtimg2"
+        app:layout_constraintTop_toTopOf="@+id/mtimg2" />
+
+    <TextView
+        android:id="@+id/mtTvprice2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/mtimg2"
+        app:layout_constraintStart_toEndOf="@+id/mtimg2" />
+
+    <ImageView
+        android:id="@+id/mtimg3"
+        android:layout_width="70dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/mtTvprice2"
+        app:layout_constraintStart_toEndOf="@+id/mtTvName2"
+        app:layout_constraintTop_toTopOf="@+id/mtTvName2"
+        app:srcCompat="@drawable/pepsi" />
+
+    <TextView
+        android:id="@+id/mtTvName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/mtimg3"
+        app:layout_constraintTop_toTopOf="@+id/mtimg3" />
+
+    <TextView
+        android:id="@+id/mtTvprice3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/mtimg3"
+        app:layout_constraintStart_toEndOf="@+id/mtimg3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

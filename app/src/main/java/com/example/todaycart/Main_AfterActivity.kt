@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -35,6 +37,8 @@ class Main_AfterActivity : AppCompatActivity() {
         val id = sf2.getString("member_id", "null")
         val pw = sf2.getString("member_pw", "null")
 
+        val mads : MutableList<MatchAdVO> = mutableListOf()
+        val rc2: RecyclerView = findViewById(R.id.rcv2)
 
 
 
@@ -44,6 +48,13 @@ class Main_AfterActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "ID/PW를 확인해주세요", Toast.LENGTH_SHORT).show()
         }
+        mads.add(MatchAdVO(R.drawable.beer))
+        val adapter2 = MatchAdAdapter(applicationContext,R.layout.matchad_list,mads)
+        rc2.layoutManager = LinearLayoutManager(applicationContext,
+            LinearLayoutManager.VERTICAL,false)
+        rc2.adapter = adapter2
+
+
         btnBucket.setOnClickListener {
             val intent = Intent(this@Main_AfterActivity, ShoppingActivity::class.java)
 
@@ -59,7 +70,7 @@ class Main_AfterActivity : AppCompatActivity() {
             startActivity(intent)
         }
         btnCall.setOnClickListener {
-            val intent = Intent(this, CallActivity::class.java)
+            val intent = Intent(this, CallBeforeActivity::class.java)
             val url = "http://119.200.31.135:9090/project/callManager"
             val params = JSONObject()
             params.put("Content-Type", "application/json")
@@ -76,9 +87,9 @@ class Main_AfterActivity : AppCompatActivity() {
 
                     if (success) {
                         Toast.makeText(this, "호출 성공", Toast.LENGTH_SHORT).show()
-//                        val intent = Intent(this, Main_AfterActivity::class.java)
+                        val intent = Intent(this, CallActivity::class.java)
 //                        intent.putExtra("member_id", id)
-//                        startActivity(intent)
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this, "호출 실패", Toast.LENGTH_SHORT).show()
                     }

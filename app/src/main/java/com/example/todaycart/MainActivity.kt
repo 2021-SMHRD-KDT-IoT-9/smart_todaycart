@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val rc : RecyclerView = findViewById(R.id.rc1)
         val members : MutableList<MemberVO> = mutableListOf()
 
+
         btnLogin.setOnClickListener {
             val intent = Intent(this@MainActivity,LoginActivity::class.java)
             startActivity(intent)
@@ -33,5 +34,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = MemberAdapter(applicationContext,R.layout.ad_list,members)
         rc.layoutManager = LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
         rc.adapter = adapter
+
+
     }
 }
