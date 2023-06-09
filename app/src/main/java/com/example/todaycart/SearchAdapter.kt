@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 // on below line we are creating a course rv adapter class.
 class SearchAdapter(
@@ -42,10 +43,12 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: SearchAdapter.CourseViewHolder, position: Int) {
         // on below line we are setting data to our text view and our image view.
-        holder.tvName.text = searchList.get(position).name
-        holder.imgProduct.setImageResource(searchList.get(position).img2)
-        holder.tvLoc.text = searchList.get(position).location
-        holder.tvPrice.text = searchList.get(position).cost
+        holder.tvName.text = searchList.get(position).p_name
+        Glide.with(holder.itemView)
+            .load("http://119.200.31.135:9090/project/productUpload/${searchList.get(position).p_img}")
+            .into(holder.imgProduct)
+        holder.tvLoc.text = searchList.get(position).p_loc
+        holder.tvPrice.text = searchList.get(position).p_price.toString()
     }
 
     override fun getItemCount(): Int {

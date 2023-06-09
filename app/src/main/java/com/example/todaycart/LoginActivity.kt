@@ -40,20 +40,18 @@ class LoginActivity : AppCompatActivity() {
 
         btnDoLogin.setOnClickListener {
             val sf = getSharedPreferences("login", Context.MODE_PRIVATE)
+            val cartNumber = "cart01"
             val editor : SharedPreferences.Editor = sf.edit()
-            val url = "http://119.200.31.135:9090/project/loginCheckMember"
-
+            val url = "http://119.200.31.135:9090/project/loginCheckMember?cart_id=${cartNumber.toString()}"
+            Log.d("cartNumber",cartNumber.toString())
             val id = etId.text.toString()
             val pw = etPw.text.toString()
-
-
 
             if (id.isNotEmpty() && pw.isNotEmpty()) {
                 val params = JSONObject()
                 params.put("Content-Type", "application/json")
                 params.put("member_id", id)
                 params.put("member_pw", pw)
-
 
                 val request = object : JsonObjectRequest(
                     Request.Method.POST,

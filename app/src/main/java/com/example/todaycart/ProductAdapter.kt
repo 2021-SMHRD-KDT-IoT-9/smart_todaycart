@@ -1,6 +1,9 @@
-package com.example.todaycart
+import com.example.todaycart.ProductVO
+import com.example.todaycart.R
+import com.example.todaycart.ShoppingActivity
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +13,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-class ProductAdapter(val context: Context, val layout : Int, val products : MutableList<ProductVO>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(val context: Context, val layout : Int, val products1 : ArrayList<ProductVO>): RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var currentQuantity: Int = 1
     private var newQuantity: Int = 0
     private val inflater = LayoutInflater.from(context)
-
+    private val sharedPreferences:SharedPreferences = context.getSharedPreferences("cart", Context.MODE_PRIVATE)
+    private var totalPrice :Int = 0
+    val editor = sharedPreferences.edit()
+    var amount: Int = 0
+    var price : Int = 0
+    var sumPrice : Int = 0
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val productName : TextView = view.findViewById(R.id.productName) // 제품 이름
         val cost : TextView = view.findViewById(R.id.cost) // 제품 가격
@@ -34,45 +43,63 @@ class ProductAdapter(val context: Context, val layout : Int, val products : Muta
     }
 
     override fun getItemCount(): Int {
-        return products.size
+        return products1.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val shoppingActivity = context as ShoppingActivity
-        holder.cost.text = products[position].cost
-        holder.productName.text = products[position].name
-        holder.img2.setImageResource(products[position].img2)
-        holder.btnDelete.setOnClickListener {
-            products.removeAt(position)
-            notifyDataSetChanged()
-            if(products.size == 0){
-                Toast.makeText(shoppingActivity,"장바구니에 물품이 없습니다!",Toast.LENGTH_SHORT).show()
-            }
-        }
-        holder.btnPlus.setOnClickListener {
-            currentQuantity = holder.quantity.text.toString().toInt()
-            newQuantity = currentQuantity + 1
-            holder.quantity.text = newQuantity.toString()
 
-            var amount = holder.quantity.text.toString().toInt()
-            val price = holder.cost.text.toString().toInt()
-            shoppingActivity.changeCost(price * amount)
-        }
-        holder.btnMinus.setOnClickListener {
-            currentQuantity = holder.quantity.text.toString().toInt()
-            if (currentQuantity > 0) {
-            newQuantity = currentQuantity - 1
-            holder.quantity.text = newQuantity.toString()
-                val shoppingActivity = context as ShoppingActivity
-                var amount = holder.quantity.text.toString().toInt()
-                val price = holder.cost.text.toString().toInt()
-                shoppingActivity.changeCost(price * amount)
+            totalPrice = 0
+            val product = products1[position]
+            val shoppingActivity = context as ShoppingActivity
+            holder.cost.text = product.p_price.toString()
+            holder.productName.text = product.p_name
+            Glide.with(context)
+                .load("http://119.200.31.135:9090/project/productUpload"+product.p_img) // 이미지 URL
+                .placeholder(R.drawable.snack) // 로딩 중 표시할 이미지
+                .error(R.drawable.snack) // 오류 시 표시할 이미지
+                .into(holder.img2)
+            holder.btnDelete.setOnClickListener {
+                products1.removeAt(position)
+                notifyDataSetChanged()
+                if(products1.size == 0){
+                    Toast.makeText(shoppingActivity,"장바구니에 물품이 없습니다!",Toast.LENGTH_SHORT).show()
+                }
             }
+            holder.btnPlus.setOnClickListener {
+                currentQuantity = holder.quantity.text.toString().toInt()
+                newQuantity = currentQuantity + 1
+                holder.quantity.text = newQuantity.toString()
+                amount = holder.quantity.text.toString().toInt()
+                price = holder.cost.text.toString().toInt()
+                totalPrice = price * amount
+                editor.putInt("totalPrice",totalPrice)
+                editor.apply()
+                editor.putInt("amount", amount)
+                editor.apply()
+                shoppingActivity.changeCost(totalPrice)
+            }
+            holder.btnMinus.setOnClickListener {
+                currentQuantity = holder.quantity.text.toString().toInt()
+                if (currentQuantity > 0) {
+                    newQuantity = currentQuantity - 1
+                    holder.quantity.text = newQuantity.toString()
+                    val shoppingActivity = context as ShoppingActivity
+                    var amount = holder.quantity.text.toString().toInt()
+                    val price = holder.cost.text.toString().toInt()
+                    Log.d("amount",amount.toString())
+                    totalPrice = price * amount
+                    editor.putInt("totalPrice",totalPrice)
+                    editor.apply()
+                    editor.putInt("amount", amount)
+                    editor.apply()
+                    shoppingActivity.changeCost(totalPrice)
+                }
+                Log.d("totalPrice",totalPrice.toString())
+                //sumPrice = sumPrice+totalPrice
 
-        }
+            }
+            // 값 찾기
 
     }
 
-
 }
-
