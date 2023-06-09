@@ -39,8 +39,7 @@ class Main_AfterActivity : AppCompatActivity() {
 
 
         if (id != null && pw != null) {
-
-            tvLogin.text = "${id}님 환영합니다 \n 현재 000번 카트 이용중입니다."
+            tvLogin.text = "${id}님 환영합니다 \n 현재 01번 카트 이용중입니다."
         } else {
             Toast.makeText(this, "ID/PW를 확인해주세요", Toast.LENGTH_SHORT).show()
         }

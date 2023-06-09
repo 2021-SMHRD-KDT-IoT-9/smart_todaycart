@@ -1,12 +1,23 @@
 package com.example.todaycart
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class SearchActivity : AppCompatActivity() {
 
@@ -20,34 +31,54 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-
-        // on below line we are initializing our views with their ids.
         rcvList = findViewById(R.id.rcvList)
-
-        // on below line we are initializing our list
         searchList = ArrayList()
 
-        // on below line we are initializing our adapter
+        val btnSearching: ImageButton = findViewById(R.id.btnSearching)
+        val etSearch: TextView = findViewById(R.id.etSearch)
+
         searchAdapter = SearchAdapter(searchList)
-
-        // on below line we are setting adapter to our recycler view.
         rcvList.adapter = searchAdapter
-
-        // on below line we are adding data to our list
-        searchList.add(ProductVO(R.drawable.beer, "테라", 2000, "주류 1-2"))
-        searchList.add(ProductVO(R.drawable.cida, "칠성사이다",2000, "음료 1-3"))
-        searchList.add(ProductVO(R.drawable.pepsi, "펩시",2000, "음료 1-3"))
-        searchList.add(ProductVO(R.drawable.snack, "오감자",1500,"스낵류 2-2"))
-
-
-        // on below line we are notifying adapter
-        // that data has been updated.
-        searchAdapter.notifyDataSetChanged()
-
+        rcvList.layoutManager = LinearLayoutManager(this)
+        btnSearching.setOnClickListener {
+            val searchText = etSearch.text.toString()
+            Log.d("받는 거", searchText)
+            searchRequest(searchText, searchList)
+        }
     }
+    // 서버 요청 및 데이터 처리를 위한 함수를 정의합니다.
+    private fun searchRequest(searchText: String , searchList: ArrayList<ProductVO>) {
+        // Volley 요청 큐를 초기화합니다.
+        val queue = Volley.newRequestQueue(this)
 
-    // calling on create option menu
-    // layout to inflate our menu file.
+        // 서버 URL을 설정합니다.
+        val url = "http://119.200.31.135:9090/project/searchProduct?p_name=$searchText" // 서버 주소와 쿼리 파라미터 설정
+        val request = JsonObjectRequest(Request.Method.GET, url, null,
+            Response.Listener { response ->
+                Log.d("테스트용", url)
+                Log.d("테스트용", "응답 받음")
+
+                if (response.isNull("p_name")) {
+                    // 데이터가 비어 있을 경우 처리
+                    Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show()
+                } else {
+                    val pName = response.getString("p_name")
+                    val pPrice = response.getInt("p_price")
+                    val pLoc = response.getString("p_loc")
+                    val pImg = response.getString("p_img")
+
+                    val productVO = ProductVO(p_name = pName, p_price = pPrice.toInt(), p_loc = pLoc, p_img = pImg)
+                    searchList.clear()
+                    searchList.add(productVO)
+                    searchAdapter.notifyDataSetChanged()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show()
+            })
+
+        queue.add(request)
+    }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // below line is to get our inflater
         val inflater = menuInflater
@@ -102,14 +133,6 @@ class SearchActivity : AppCompatActivity() {
             searchAdapter.filterList(filteredlist)
         }
     }
+
+
 }
-
-
-
-
-
-
-
-
-
-

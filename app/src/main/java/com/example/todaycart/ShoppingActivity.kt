@@ -2,9 +2,9 @@ package com.example.todaycart
 
 import ProductAdapter
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -19,38 +19,37 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONException
 import org.json.JSONObject
 
-import kr.co.bootpay.android.*;
 import kr.co.bootpay.android.models.Payload
 
 
 import kr.co.bootpay.android.Bootpay
-import kr.co.bootpay.android.BootpayAnalytics
 import kr.co.bootpay.android.events.BootpayEventListener
 import kr.co.bootpay.android.models.BootExtra
 import kr.co.bootpay.android.models.BootItem
 import kr.co.bootpay.android.models.BootUser
-import kr.co.bootpay.android.models.statistics.BootStatItem
+import org.json.JSONArray
+import java.util.Timer
+import java.util.TimerTask
 
 
 class ShoppingActivity : AppCompatActivity() {
+
     private lateinit var cost1: TextView
     val URL = "http://119.200.31.135:9090/project/shopingcart"
     var products1 = ArrayList<ProductVO>()
     lateinit var rcv1 :RecyclerView
     lateinit var requestQueue : RequestQueue
-    var id :String = "손동연"
-
+    lateinit var requestBody : JSONObject
+    lateinit var before_product:ArrayList<ProductVO>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping)
-        val id = "손동연"
-        val quantity = 5
-        val totalCost = 6000.0
-//
-//       val sharedPreferences = getSharedPreferences("myPreferences", Context.MODE_PRIVATE)
-//       val id =  sharedPreferences.getString("id", "")
-//        val quantity = sharedPreferences.getString("quantity","")
-//       val totalCost = sharedPreferences.getString("totalCost","")
+        before_product = ArrayList<ProductVO>()
+        val sf2 = this.getSharedPreferences("login", Context.MODE_PRIVATE)
+        val sf1 = this.getSharedPreferences("cart",Context.MODE_PRIVATE)
+        val quantity = sf1.getInt("amount",0)
+        val totalCost = sf1.getInt("totalPrice",0)
+        val id =  sf2.getString("member_id", "null")
         rcv1 = findViewById(R.id.rcv1)
         val rcv2: RecyclerView = findViewById(R.id.rcv2)
         val btnAd: Button = findViewById(R.id.btnAd)
@@ -59,26 +58,99 @@ class ShoppingActivity : AppCompatActivity() {
         cost1 = findViewById(R.id.cost1)
 
         val ads = ArrayList<AdVO>()
-       requestQueue = Volley.newRequestQueue(this)
+        requestQueue = Volley.newRequestQueue(this)
 
-        val requestBody = JSONObject()
+        products1 = ArrayList<ProductVO>()
 
-        rcv1()
+        val timer = Timer()
+
+// 타이머 작업 생성
+        val timerTask = object : TimerTask() {
+            override fun run() {
+                // 서버로 요청 보내는 로직 수행
+                val jsonObjectRequest = StringRequest(
+                    Request.Method.POST,
+                    URL,
+                    { response ->
+                        val json = JSONObject(response)
+                        val no1 =  json.getInt("p_code")
+                        val no2 = json.getString("p_name")
+                        val no3 = json.getInt("p_price")
+                        val no4 = json.getString("p_loc")
+                        val no5 = json.getInt("p_weight")
+                        val no6 = json.getString("p_img")
+                        val v = ProductVO(
+                            p_code = no1,
+                            p_name = no2,
+                            p_price = no3,
+                            p_loc = no4,
+                            p_weight = no5,
+                            p_img = no6
+                        )
+                        runOnUiThread {
+                            // UI 업데이트를 UI 스레드에서 수행
+                            products1.add(v)
+                            val adapter = ProductAdapter(this@ShoppingActivity, R.layout.shopping_list, products1)
+                            rcv1.layoutManager =
+                                LinearLayoutManager(this@ShoppingActivity, LinearLayoutManager.VERTICAL, false)
+                            rcv1.adapter = adapter
+                        }
+                    },
+                    { error ->
+                        // 에러 처리
+                    }
+                )
+                // Volley 요청 큐에 추가
+                Volley.newRequestQueue(this@ShoppingActivity).add(jsonObjectRequest)
+            }
+        }
+// 타이머 시작
+        timer.schedule(timerTask, 0, 20000)
+//        btnAd.setOnClickListener {
+//        val jsonArray = JSONArray()
+//        val jsonObjectRequest = StringRequest(
+//            Request.Method.POST,
+//            URL,
+//            { response ->
+//                val ad1 =  json.getInt("p_code")
+//                val ad2 = json.getString("p_name")
+//                val ad3 = json.getInt("p_price")
+//                val no4 = json.getString("p_loc")
+//                val no5 = json.getInt("p_weight")
+//                val no6 = json.getString("p_img")
+//                val v = ProductVO(
+//                    p_code = no1,
+//                    p_name = no2,
+//                    p_price = no3,
+//                    p_loc = no4,
+//                    p_weight = no5,
+//                    p_img = no6
+//                )
+//                        val adapter2 = AdAdapter(this, R.layout.ad_list2, ads)
+//                        rcv2.layoutManager =
+//                            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+//                        rcv2.adapter = adapter2
+//                    }
+//                ads.add(v)
+//        requestQueue.add(jsonObjectRequest)
 
         btnPayment.setOnClickListener {
+
+            sendPaymentDataToServer(id.toString(), products1)
 
             val application_id = "646d69333049c8001ef8bea7"
             val extra = BootExtra()
                 .setCardQuota("0,2,3")
-            var price = ProductVO().p_price.toDouble()
+            var price = totalCost.toDouble()
+            Log.d("price",price.toString())
             val pg: String = "이니시스" //pg사
             val method: String = "휴대폰"  //결제수단
             val user = BootUser().setPhone("010-1234-5678")
             val items: MutableList<BootItem> = ArrayList()
             val item1 = BootItem().setName(ProductVO().p_name)
-                .setId(ProductVO().p_code.toString())
+                .setId(application_id)
                 .setQty(quantity)
-                .setPrice(totalCost)
+                .setPrice(price)
             val payload = Payload()
             payload.setApplicationId(application_id)
                 .setOrderName("부트페이 결제테스트")
@@ -146,15 +218,15 @@ class ShoppingActivity : AppCompatActivity() {
                     // 결제가 완료되었을 때 호출되는 메서드
                     //data 매개변수는 완료에 관련된 데이터를 전달받음
                     override fun onDone(data: String) {
-                        Log.d("done", data)
+                        Log.d("test7", data)
                         startActivity(intent)
                     }
-                }).requestPayment() //결제 요청을 수행
 
-            sendPaymentDataToServer(id.toString(), products1)
+                }).requestPayment() //결제 요청을 수행
         }
     }
     fun changeCost(cost: Int) {
+        Log.d("cost",""+cost)
         cost1.text = cost.toString()
     }
 
@@ -170,30 +242,35 @@ class ShoppingActivity : AppCompatActivity() {
         user.username = "홍길동"
         return user
     }
-    private fun sendPaymentDataToServer(id:String,data: ArrayList<ProductVO>) {
-        val url = "http://119.200.31.135:9090/project/payProduct?member_id="+id
+    private fun sendPaymentDataToServer(memberId: String, beforeProductList: ArrayList<ProductVO>) {
+        val url = "http://119.200.31.135:9090/project/payProduct?member_id=" + memberId
         val requestQueue = Volley.newRequestQueue(this)
-        val jsonObject = JSONObject()
-        jsonObject.put("id", data)
-        Log.d("test0",jsonObject.toString())
-        val requestBody = jsonObject.toString()
-
+        val jsonArray = JSONArray()
+        for (product in beforeProductList) {
+            val jsonObject = JSONObject()
+            jsonObject.put("p_code", product.p_code)
+            jsonObject.put("p_name", product.p_name)
+            jsonObject.put("p_price", product.p_price)
+            jsonObject.put("p_loc", product.p_loc)
+            jsonObject.put("p_weight", product.p_weight)
+            jsonObject.put("p_img", product.p_img)
+            jsonArray.put(jsonObject)
+        }
+        val requestBody = jsonArray.toString()
         val stringRequest = object : StringRequest(
             Method.POST,
             url,
             Response.Listener<String> { response ->
-                // 서버 응답 처리
                 try {
                     val jsonResponse = JSONObject(response)
+                    Log.d("test7", "" + jsonResponse)
                     val success = jsonResponse.getBoolean("success")
-                    val message = jsonResponse.getString("message")
-
                     if (success) {
                         // 결제 완료 처리
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "결제 완료", Toast.LENGTH_SHORT).show()
                     } else {
                         // 결제 실패 처리
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "결제 실패", Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: JSONException) {
                     e.printStackTrace()
@@ -208,54 +285,13 @@ class ShoppingActivity : AppCompatActivity() {
             }
 
             override fun getBody(): ByteArray {
-                return requestBody.toByteArray()
+                return requestBody.toByteArray(Charsets.UTF_8)
             }
         }
 
         requestQueue.add(stringRequest)
     }
 
-    fun rcv1(){
-        products1 = ArrayList<ProductVO>()
-        val jsonObjectRequest = StringRequest(
-            Request.Method.POST,
-            URL,
-            { response ->
-                val json = JSONObject(response)
-                val no1 =  json.getInt("p_code")
-                val no2 = json.getString("p_name")
-                val no3 = json.getInt("p_price")
-                val no4 = json.getString("p_loc")
-                val no5 = json.getInt("p_weight")
-                val no6 = json.getString("p_img")
-                val v = ProductVO(
-                    p_code = no1,
-                    p_name = no2,
-                    p_price = no3,
-                    p_loc = no4,
-                    p_weight = no5,
-                    p_img = no6
-                )
-                products1.add(v)
-                val adapter = ProductAdapter(this, R.layout.shopping_list, products1)
-                rcv1.layoutManager =
-                    LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                rcv1.adapter = adapter
-
-//                    btnAd.setOnClickListener {
-//                        val adapter2 = AdAdapter(this, R.layout.ad_list2, ads)
-//                        rcv2.layoutManager =
-//                            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-//                        rcv2.adapter = adapter2
-//                    }
-            },
-            { error ->
-                error.printStackTrace()
-            }
-        )
-        requestQueue.add(jsonObjectRequest)
-
-    }
 
 
 }
